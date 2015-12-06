@@ -1,0 +1,30 @@
+body {
+  padding-bottom: 80px;
+}
+
+.bg-danger, .bg-success {
+	padding: 0 5px;
+}
+
+a {
+	color: #EF1F2F;
+	text-decoration: none;
+}
+
+.debug-bottom {
+    padding: 5px;
+    margin-top: 7px;
+    
+    background-color: #CADCCE;
+    color: #000;
+}
+
+.main-menu {
+  width: 100%;
+}
+
+.bluecol {
+  color: #260094;
+}
+
+.field-table td {padding: 2px;}

@@ -21,15 +21,16 @@ DROP FOREIGN KEY FKhabitSpec;
 ALTER TABLE doti_habitspec
 DROP FOREIGN KEY FKHSpecAuthor;
 
--- DROP
 DROP TABLE doti_fields;
 DROP TABLE doti_habits;
 DROP TABLE doti_users;
 DROP TABLE doti_user_fields;
 DROP TABLE doti_habitspec;
-DROP TABLE doti_user_habits;
+DROP TABLE doti_user_fields_habits;
 
--- TABELI STRUKTUUR ====================================================================
+-- =============================================================================================
+-- TABELI STRUKTUUR ============================================================================
+-- =============================================================================================
 
 DROP TABLE IF EXISTS `doti_fields`;
 CREATE TABLE IF NOT EXISTS `doti_fields` (
@@ -77,17 +78,17 @@ CREATE TABLE IF NOT EXISTS `doti_habits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Erinevad tegevused/sündmused, mida kasutaja soovib trackida/tagida.';
 
-DROP TABLE IF EXISTS `doti_user_habits`;
-CREATE TABLE IF NOT EXISTS `doti_user_habits` (
+DROP TABLE IF EXISTS `doti_user_fields_habits`;
+CREATE TABLE IF NOT EXISTS `doti_user_fields_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `users_id` int(11) NOT NULL,
+  `users_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
   `habitspec_id` int(11) NOT NULL,
-  KEY `users_id` (`users_id`),
+  KEY `users_fields_id` (`users_fields_id`),
   KEY `habits_id` (`habits_id`),
   KEY `habitspec_id` (`habitspec_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
-COMMENT='Kasutajaga seotud Tegevused';
+COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
 DROP TABLE IF EXISTS `doti_habitspec`;
 CREATE TABLE IF NOT EXISTS `doti_habitspec` (
@@ -97,7 +98,10 @@ CREATE TABLE IF NOT EXISTS `doti_habitspec` (
   KEY `habitspec_author_users_id` (`habitspec_author_users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Sündmuste täpsustus, näiteks koht, aeg, olukord vms, mitte sassi ajada väärtuse ehk tegevuse mõõduga, nt trenni aeg, ostu summa, kcal jne.';
+
+-- =============================================================================================
 -- FOREIGN KEYD ================================================================================
+-- =============================================================================================
 
 ALTER TABLE `doti_fields`
   ADD CONSTRAINT `FKFieldAuthor` FOREIGN KEY (`author_users_id`) REFERENCES `doti_users` (`id`);
@@ -115,8 +119,8 @@ ALTER TABLE `doti_habits`
           ON DELETE NO ACTION
           ON UPDATE NO ACTION;
 
-ALTER TABLE `doti_user_habits`
-  ADD CONSTRAINT `FKHabitOwner` FOREIGN KEY (`users_id`) REFERENCES `doti_users` (`id`),
+ALTER TABLE `doti_user_fields_habits`
+  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`users_fields_id`) REFERENCES `doti_user_fields` (`id`),
   ADD CONSTRAINT `FKhabit` FOREIGN KEY (`habits_id`) REFERENCES `doti_habits` (`id`),
   ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_habitspec` (`id`);
   
