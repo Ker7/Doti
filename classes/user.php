@@ -2,6 +2,10 @@
 
 include('password.php');
 
+ /* Kasutajaga ja Andmebaasiga seotud
+  *
+  *
+  */
 class User extends Password{
 
     private $_db;

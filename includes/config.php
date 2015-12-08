@@ -39,6 +39,9 @@ require '/../vendor/autoload.php';      // Autoloading   "!composer install"
 require('includes/Klogger.php');        // Log asjad
 require('includes/Keskus.php');         // Pohiasjad
 
+/* Page URL'id
+ *
+ */
 $Keskus = new Keskus();
 
 $user = new User($db);

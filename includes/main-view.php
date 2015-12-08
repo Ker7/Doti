@@ -26,7 +26,7 @@ foreach($myfields as $ef) {
 echo '</tbody>';
 echo '</table>';
 
-
+echo 'Count fields: '.count($myfields);
 echo '<pre>';
 print_r($myfields);
 echo '</pre>';

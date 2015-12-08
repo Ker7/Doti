@@ -2,7 +2,7 @@
 
 class Keskus {
  
- /* Pärignute töötlemine
+ /* Pärignute töötlemine, URL'id
   *
   *
   *

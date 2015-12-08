@@ -1,6 +1,9 @@
 <?php
 
 if (defined('DEBUG_MODE') == true) {
+    echo '<div class="debug-bottom">SESSION<pre>';
+    print_r($_SESSION);
+    echo '</pre> </div>';
     echo '<div class="debug-bottom">GET<pre>';
     print_r($_GET);
     echo '</pre> </div>';
@@ -10,6 +13,7 @@ if (defined('DEBUG_MODE') == true) {
     echo '<div class="debug-bottom">_SERVER<pre>';
     print_r($_SERVER);
     echo '</pre> </div>';
+    
 }
 ?>
 
