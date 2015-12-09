@@ -1,4 +1,11 @@
 <?php
+
+//include the user class, pass in the database connection
+include('classes/user.php');
+include('classes/phpmailer/mail.php');
+require '/../vendor/autoload.php';      // Autoloading   "!composer install"
+require('includes/Keskus.php');         // Pohiasjad
+
 ob_start();
 session_start();
 
@@ -6,16 +13,18 @@ session_start();
 date_default_timezone_set('Europe/London');
 
 //database credentials
-define('DBHOST','localhost');
-define('DBUSER','root');
-define('DBPASS','');
-define('DBNAME','doti');
+CONST DBHOST = 'localhost';
+CONST DBUSER = 'root';
+CONST DBPASS = '';
+CONST DBNAME = 'doti';
 // Kui on DEBUGIMINE!
-define('DEBUG_MODE', "midaiganes");//error_reporting(E_ALL);
-//application address       //define('ABS_DIR','C:\\xampp\\htdocs\\reglo\\'); OUT
-define('DIR','localhost/reglo/');    //define('DIR','http://domain.com/');
-define('SITEEMAIL','noreply@domain.com');
-CONST WEB_DIR = 'localhost/reglo/';
+CONST DEBUG_MODE =  "midaiganes";
+error_reporting(E_ALL);
+
+//application address       //CONST ABS_DIR = 'C:\\xampp\\htdocs\\reglo\\'; OUT
+CONST DIR = 'localhost/reglo/';    //CONST DIR = 'http://domain.com/';
+CONST SITEEMAIL = 'noreply@domain.com';
+CONST WEB_DIR = 'localhost/doti/';
 // END conf
 
 
@@ -32,12 +41,6 @@ try {
     exit;
 }
 
-//include the user class, pass in the database connection
-include('classes/user.php');
-include('classes/phpmailer/mail.php');
-require '/../vendor/autoload.php';      // Autoloading   "!composer install"
-require('includes/Klogger.php');        // Log asjad
-require('includes/Keskus.php');         // Pohiasjad
 
 /* Page URL'id
  *
@@ -46,22 +49,6 @@ $Keskus = new Keskus();
 
 $user = new User($db);
 
-/*  Loggings
- *
- *  LogLevel::EMERGENCY;
-    LogLevel::ALERT;
-    LogLevel::CRITICAL;
-    LogLevel::ERROR;
-    LogLevel::WARNING;
-    LogLevel::NOTICE;
-    LogLevel::INFO;
-    LogLevel::DEBUG;
-    
-    $log->info('Returned a million search results'); //Prints to the log file
-    $log->error('Printttttt'); //Prints to the log file
-    $log->debug('x = 5'); //Prints nothing due to current severity threshhold
- */
-$log = new Katzgrau\KLogger\Logger('log/', Psr\Log\LogLevel::DEBUG);
 
 
 ?>

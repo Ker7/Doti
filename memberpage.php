@@ -26,7 +26,7 @@ require('layout/header.php');
           <hr>
         </div>
           
-          <?php require('includes/main-view.php'); ?>
+          <?php require('layout/main-view.php'); ?>
 		</div>
 	</div>
 

@@ -28,6 +28,6 @@ echo '</table>';
 
 echo 'Count fields: '.count($myfields);
 echo '<pre>';
-print_r($myfields);
+//print_r($myfields);
 echo '</pre>';
 ?>
