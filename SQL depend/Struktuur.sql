@@ -126,12 +126,6 @@ ALTER TABLE `doti_user_fields_habits`
   
 ALTER TABLE `doti_habitspec`
   ADD CONSTRAINT `FKHSpecAuthor` FOREIGN KEY (`habitspec_author_users_id`) REFERENCES `doti_users` (`id`);
-  
-  
-  
-  
-  
-  
-  
+
   
   
