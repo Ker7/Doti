@@ -33,7 +33,8 @@ class Keskus {
    */
   public function getSubPage($string = "", $add = ""){
   
-    $this->logi('Keskus->getSubPage() - '.$string, 21);
+    $this->logi('Keskus->getSubPage() - '.$string, 2);
+    $this->logi("--> http://" . WEB_DIR . $string, 2);
     
     return "http://" . WEB_DIR . $string;
   
