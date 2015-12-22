@@ -18,15 +18,15 @@ DROP FOREIGN KEY FKHabitOwner,
 DROP FOREIGN KEY FKhabit,
 DROP FOREIGN KEY FKhabitSpec;
 
-ALTER TABLE doti_habitspec
+ALTER TABLE doti_spec
 DROP FOREIGN KEY FKHSpecAuthor;
 
 DROP TABLE doti_fields;
 DROP TABLE doti_habits;
 DROP TABLE doti_users;
 DROP TABLE doti_user_fields;
-DROP TABLE doti_habitspec;
-DROP TABLE doti_user_fields_habits;
+DROP TABLE doti_spec;
+DROP TABLE doti_user_habits;
 
 -- =============================================================================================
 -- TABELI STRUKTUUR ============================================================================
@@ -69,6 +69,17 @@ CREATE TABLE IF NOT EXISTS `doti_user_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud fieldid';
 
+DROP TABLE IF EXISTS `doti_field_datalog`;
+CREATE TABLE IF NOT EXISTS `doti_field_datalog` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_field_id` int(11) NOT NULL,
+  `value` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `comment` text NOT NULL,
+  KEY `user_field_id` (`user_field_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci
+COMMENT='Fieldide väärtuste ajalugu ja kommentaarid';
+
 DROP TABLE IF EXISTS `doti_habits`;
 CREATE TABLE IF NOT EXISTS `doti_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -78,20 +89,31 @@ CREATE TABLE IF NOT EXISTS `doti_habits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Erinevad tegevused/sündmused, mida kasutaja soovib trackida/tagida.';
 
-DROP TABLE IF EXISTS `doti_user_fields_habits`;
-CREATE TABLE IF NOT EXISTS `doti_user_fields_habits` (
+DROP TABLE IF EXISTS `doti_user_habits`;
+CREATE TABLE IF NOT EXISTS `doti_user_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `users_fields_id` int(11) NOT NULL,
+  `user_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
   `habitspec_id` int(11) NOT NULL,
-  KEY `users_fields_id` (`users_fields_id`),
+  KEY `user_fields_id` (`user_fields_id`),
   KEY `habits_id` (`habits_id`),
   KEY `habitspec_id` (`habitspec_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
-DROP TABLE IF EXISTS `doti_habitspec`;
-CREATE TABLE IF NOT EXISTS `doti_habitspec` (
+DROP TABLE IF EXISTS `doti_habit_datalog`;
+CREATE TABLE IF NOT EXISTS `doti_habit_datalog` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `user_fields_habits_id` int(11) NOT NULL,
+  `event_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `unit` text CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
+  `value` decimal(10,2) NOT NULL,
+  KEY `user_fields_habits_id` (`user_fields_habits_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci
+COMMENT='Fieldide väärtuste ajalugu ja kommentaarid';
+
+DROP TABLE IF EXISTS `doti_spec`;
+CREATE TABLE IF NOT EXISTS `doti_spec` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `habitspec_author_users_id` int(11) NOT NULL,
@@ -119,13 +141,12 @@ ALTER TABLE `doti_habits`
           ON DELETE NO ACTION
           ON UPDATE NO ACTION;
 
-ALTER TABLE `doti_user_fields_habits`
-  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`users_fields_id`) REFERENCES `doti_user_fields` (`id`),
+ALTER TABLE `doti_user_habits`
+  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`user_fields_id`) REFERENCES `doti_user_fields` (`id`),
   ADD CONSTRAINT `FKhabit` FOREIGN KEY (`habits_id`) REFERENCES `doti_habits` (`id`),
-  ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_habitspec` (`id`);
+  ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_spec` (`id`);
   
-ALTER TABLE `doti_habitspec`
+ALTER TABLE `doti_spec`
   ADD CONSTRAINT `FKHSpecAuthor` FOREIGN KEY (`habitspec_author_users_id`) REFERENCES `doti_users` (`id`);
 
-  
-  
+--  doti_field_datalog --  

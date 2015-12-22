@@ -22,7 +22,7 @@ require('layout/header.php');
           <p class="btn btn-default" ><a class='bluecol' href='#'>Add a Field</a></p>
           <p class="btn btn-default" ><a class='bluecol' href='#'>Track an Event</a></p>
           <p class="btn btn-default" ><a class='bluecol' href='#'>Settings</a></p>
-          <p class="btn btn-default" ><a class='bluecol' href='<?php echo $Keskus->getDotiPage('logout.php'); ?>'>Logout</a></p>
+          <p class="btn btn-default" ><a class='bluecol' href='<?php echo $Keskus->getSubPage('logout.php'); ?>'>Logout</a></p>
           <hr>
         </div>
           
