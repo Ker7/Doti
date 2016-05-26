@@ -1,7 +1,6 @@
 <?php
-
+/* @todo eralid faili menüü */
 echo '
-<!-- /* @todo eralid faili menüü */ -->
         <div class="main-menu">
           <p class="btn btn-default" ><a class="bluecol" href="#">Add a Field</a></p>
           <p class="btn btn-default" ><a class="bluecol" href="#">Track an Event</a></p>
