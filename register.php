@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
 			$mail->send();
 			
 			//@toremove If (DEBUG) log mail body
-			if (defined('DEBUG_MODE')) $log->debug('Email body: ' . $body);
+			if (defined('DEBUG_MODE')) $Keskus->logi('Email body: ' . $body, 8);
 
 			//redirect to index page
 			header('Location: index.php?action=joined');

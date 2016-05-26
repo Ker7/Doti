@@ -2,6 +2,9 @@
 
 require('includes/config.php');
 
+//if logged in redirect to members page
+if( $user->is_logged_in() ){ header('Location: memberpage.php'); }
+
 ////process login form if submitted
 if(isset($_POST['submit'])){
 

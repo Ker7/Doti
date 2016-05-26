@@ -5,8 +5,8 @@
 
 INSERT INTO `doti_users` (`id`, `username`, `password`, `email`, `active`, `privilegeLevel`, `created_timestamp`, `edited_timestamp`) VALUES
 (1, 'Kert', '$2y$10$zAl3EcpDPGeeCvV8ofrt1OwOp9NE7LRcM9z4nU2I43H82dB9eS5wK', 'kert@mail.ee', 'Yes', 1, '2015-11-26 15:57:27', '2015-11-26 15:57:27'),
-(2, 'katry', 'kuldre', 'katry@mail.ee', 'Yes', 2, '2015-11-26 16:00:26', '2015-11-26 15:57:27'),
-(3, 'diana', 'mehed', 'diana@mail.ee', 'Yes', 1, '2015-11-26 16:00:45', '2015-11-26 15:57:27');
+(2, 'Andrus', 'kuldre', 'katry@mail.ee', 'Yes', 2, '2015-11-26 16:00:26', '2015-11-26 15:57:27'),
+(3, 'Diana', 'mehed', 'diana@mail.ee', 'Yes', 1, '2015-11-26 16:00:45', '2015-11-26 15:57:27');
 
 --
 -- Andmete tõmmistamine tabelile `doti_fields`

@@ -22,7 +22,7 @@ CONST DEBUG_MODE =  "midaiganes";
 error_reporting(E_ALL);
 
 //application address       //CONST ABS_DIR = 'C:\\xampp\\htdocs\\reglo\\'; OUT
-CONST DIR = 'localhost/reglo/';    //CONST DIR = 'http://domain.com/';
+CONST DIR = 'localhost/doti/';    //CONST DIR = 'http://domain.com/';
 CONST SITEEMAIL = 'noreply@domain.com';
 CONST WEB_DIR = 'localhost/doti/';
 // END conf
