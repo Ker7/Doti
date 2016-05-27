@@ -22,7 +22,9 @@ ALTER TABLE doti_spec
 DROP FOREIGN KEY FKHSpecAuthor;
 
 DROP TABLE doti_fields;
+DROP TABLE doti_field_datalog;
 DROP TABLE doti_habits;
+DROP TABLE doti_habit_datalog;
 DROP TABLE doti_users;
 DROP TABLE doti_user_fields;
 DROP TABLE doti_spec;
