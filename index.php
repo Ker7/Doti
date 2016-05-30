@@ -2,7 +2,8 @@
 
 require('includes/config.php');
 
-//if logged in redirect to members page
+//Check for logged in Cookie HERE as well.
+//This should all be in one place and a reusable Keskus function...
 if( $user->is_logged_in() ){ header('Location: memberpage.php'); }
 
 ////process login form if submitted
@@ -17,6 +18,7 @@ if(isset($_POST['submit'])){
 		exit;
 	
 	} else {
+		//@todo more validations to be added here . . .
 		$error[] = 'Wrong username or password or your account has not been activated.';
 	}
 

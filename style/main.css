@@ -27,4 +27,15 @@ a {
   color: #260094;
 }
 
+.field-table {float: left;}
 .field-table td {padding: 2px;}
+
+.habits-table {float: left; width: 250px; background-color: #dd2f31;}
+
+.habit-title p span{
+	color: RED;
+}
+
+.pealkiri {
+	color: RED;
+}

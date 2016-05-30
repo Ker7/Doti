@@ -3,8 +3,11 @@
 -- Seoste kaotamine
 --
 
-ALTER TABLE doti_fields
-DROP FOREIGN KEY FKFieldAuthor;
+
+ALTER TABLE doti_user_habits
+DROP FOREIGN KEY FKHabitOwner,
+DROP FOREIGN KEY FKhabit,
+DROP FOREIGN KEY FKhabitSpec;
 
 ALTER TABLE doti_user_fields
 DROP FOREIGN KEY FKFieldOwner,
@@ -13,22 +16,21 @@ DROP FOREIGN KEY FKField;
 ALTER TABLE doti_habits
 DROP FOREIGN KEY FKHabitAuthor;
 
-ALTER TABLE doti_user_habits
-DROP FOREIGN KEY FKHabitOwner,
-DROP FOREIGN KEY FKhabit,
-DROP FOREIGN KEY FKhabitSpec;
-
 ALTER TABLE doti_spec
 DROP FOREIGN KEY FKHSpecAuthor;
 
-DROP TABLE doti_fields;
-DROP TABLE doti_field_datalog;
-DROP TABLE doti_habits;
-DROP TABLE doti_habit_datalog;
-DROP TABLE doti_users;
-DROP TABLE doti_user_fields;
-DROP TABLE doti_spec;
+ALTER TABLE doti_fields
+DROP FOREIGN KEY FKFieldAuthor;
+--
+
 DROP TABLE doti_user_habits;
+DROP TABLE doti_user_fields;
+DROP TABLE doti_habits;
+DROP TABLE doti_spec;
+DROP TABLE doti_field_datalog;
+DROP TABLE doti_habit_datalog;
+DROP TABLE doti_fields;
+DROP TABLE doti_users;
 
 -- =============================================================================================
 -- TABELI STRUKTUUR ============================================================================

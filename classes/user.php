@@ -47,7 +47,7 @@ class User extends Password{
   /* Küsib enese Fieldid
    *
    */
-  public function getFieldsPersonal(){
+  public function getFieldsPersonal($member_ID){
     try {
 			$stmt = $this->_db->prepare(
      'SELECT doti_fields.name AS FieldName,
@@ -57,7 +57,31 @@ class User extends Password{
         ON doti_fields.id = doti_user_fields.fields_id
       WHERE users_id = :myId
       ORDER BY FieldName DESC;');
-			$stmt->execute(array('myId' => $_SESSION['memberID']));
+			$stmt->execute(array('myId' => $member_ID));
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		} catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+		}
+  }
+    
+  /* Küsib enese Fieldid
+   *
+   */
+  public function getHabits($field_ID){
+    try {
+			$stmt = $this->_db->prepare(
+     'SELECT doti_habits.name as HabitName,
+						doti_spec.name as SpecName
+				FROM doti_habits
+      LEFT JOIN doti_user_habits
+        ON doti_habits.id = doti_user_habits.habits_id
+      LEFT JOIN doti_spec
+        ON doti_spec.id = doti_user_habits.habitspec_id
+      WHERE user_fields_id = :mineId
+      ORDER BY doti_user_habits.id ASC;');
+			$stmt->execute(array('mineId' => $field_ID));
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 

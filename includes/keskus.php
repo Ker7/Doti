@@ -7,6 +7,10 @@ require('includes/Klogger.php');        // Log asjad
   */
 class Keskus {
 
+  //Get KEY's for actions!
+  public $_field_DELETE = "df";
+  public $_field_OPEN = "of";
+
   private $_logger;
  
   function __construct(){
@@ -37,6 +41,31 @@ class Keskus {
     
     //return "http://" . WEB_DIR . $string;
     return "http://" . WEB_DIR . $string . $add;
+  
+  }
+  
+  /* For building links with params v2!
+   *
+   * @var $add array Get parameetrid
+   */
+  public function getSubPageParams($string = "", $add){
+  
+    $url_string = "/?";
+    
+    //$addstr = implode($add);
+    //print_r($add);
+    
+    $c = 0; //silmple counter, so first no additional &'s in URL
+    foreach ($add as $ukey => $uval) {
+      $url_string .= ($c > 0 ? "&" : "");
+      $c++;
+      
+      $url_string .= $ukey."=".$uval;
+    
+    }
+    
+    $this->logi('Keskus->getSubPage() - '.$string, 2);
+    return "http://" . WEB_DIR . $string . $url_string;
   
   }
   
