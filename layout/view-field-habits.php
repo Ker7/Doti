@@ -4,14 +4,12 @@
  *
  * Sector Data
  *
+ * Kui GET parameetsin on _field_OPEN key, ehk soovitakse mingi fieldi sisu näha, siis see vaade kuvab selle. Ehk siin toimub kontroll... Paha, see peaks toimuma eraldi
+ *
  * @input Member Database ID
  */
 $fieldhabits = "";
-if (!isset($_GET[ $Keskus->_field_OPEN ])) {
-  
-} else {
-  
-  $fieldhabits = $user->getHabits($_GET[ $Keskus->_field_OPEN ]);
+$fieldhabits = $user->getHabits($_GET[ $Keskus->_field_OPEN ]);
   
 //echo "Getting Field habits for: ".$_GET[ $Keskus->_field_OPEN ];
   
@@ -28,11 +26,14 @@ foreach($fieldhabits as $fh) {
     echo '</p>';
   echo '</div>';
 }
-echo '</div';
 
+if (count($fieldhabits)==0) {
+  echo "MSG: No habits here... ADD NOW!";
 }
 
-//echo 'Count habits: '.count($fieldhabits);
+echo '</div';
+
+//echo '<h1>Count habits: '.count($fieldhabits).'</h1>';
 //echo '<pre>';
 //print_r($fieldhabits);
 //echo '</pre>';

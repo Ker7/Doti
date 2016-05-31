@@ -20,23 +20,23 @@ require('layout/header.php');
 
 	<div class="row">
 
-	    <div class="col-sm-offset-2">
+	    <div class="col-md-8" style="overflow: auto;">
 			
 				<h2>Welcome <?php echo $_SESSION['username']; ?></h2>
 				
           <?php require('layout/main-nav.php'); ?>
 				
           <?php require('layout/view-fields.php'); ?>
-          <?php require('layout/view-field-habits.php'); ?>
+          <?php if (isset($_GET[ $Keskus->_field_OPEN ])) { include('layout/view-field-habits.php'); } ?>
 		  </div>
-
-	    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		  </div>
+			
 	</div>
 
 
 </div>
-
+  
+	<!-- Start Footer -->
+	
 <?php 
 //include header template
 require('layout/footer.php'); 
