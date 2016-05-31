@@ -18,8 +18,8 @@ CONST DBUSER = 'root';
 CONST DBPASS = '';
 CONST DBNAME = 'doti';
 // Kui on DEBUGIMINE!
-//CONST DEBUG_MODE =  "midaiganes";
-//error_reporting(E_ALL);
+CONST DEBUG_MODE =  "midaiganes";
+error_reporting(E_ALL);
 
 //application address       //CONST ABS_DIR = 'C:\\xampp\\htdocs\\reglo\\'; OUT
 CONST DIR = 'localhost/doti/';    //CONST DIR = 'http://domain.com/';

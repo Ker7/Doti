@@ -27,15 +27,43 @@ a {
   color: #260094;
 }
 
-.field-table {float: left;}
-.field-table td {padding: 2px;}
+.field-table {
+	float: left;
+	width: 250px;
+	display: block;
+}
+.field-line {
+	width: 100%;
+	float: left;
+	display: block;
+}
 
-.habits-table {float: left; width: 250px; background-color: #dd2f31;}
+.field-remove {
+	font-size: 0.8em;
+	
+	float: left;
+	display: block;
+}
+.field-name {
+	font-weight: 600;
+	
+	float: left;
+	display: block;
+	padding: 0px 5px;
+}
+.field-open {
+	float: left;
+	display: block;
+}
+
+
+.habits-table {float: left; width: 250px; background-color: #dfdfaa;}
 
 .habit-title p span{
-	color: RED;
+	color: #444;
+	padding: 2px;
 }
 
 .pealkiri {
-	color: RED;
+	color: #6ff;
 }

@@ -60,6 +60,8 @@ class User extends Password{
 			$stmt->execute(array('myId' => $member_ID));
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+$this->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3);
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
@@ -72,7 +74,8 @@ class User extends Password{
   public function getHabits($field_ID){
     try {
 			$stmt = $this->_db->prepare(
-     'SELECT doti_habits.name as HabitName,
+     'SELECT
+						doti_habits.name as HabitName,
 						doti_spec.name as SpecName
 				FROM doti_habits
       LEFT JOIN doti_user_habits
@@ -84,6 +87,7 @@ class User extends Password{
 			$stmt->execute(array('mineId' => $field_ID));
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+$this->logi('getHabits($field_ID::'.$field_ID.')', 3);
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
