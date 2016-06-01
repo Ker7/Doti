@@ -59,15 +59,17 @@ class User extends Password{
       ORDER BY FieldName DESC;');
 			$stmt->execute(array('myId' => $member_ID));
 
+//$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		
-$this->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3);
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
   }
     
+	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel...
+	
   /* Küsib enese Fieldid
    *
    */
@@ -86,8 +88,8 @@ $this->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3);
       ORDER BY doti_user_habits.id ASC;');
 			$stmt->execute(array('mineId' => $field_ID));
 
+//$Keskus->logi('getHabits($field_ID::'.$field_ID.')', 3);
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
-$this->logi('getHabits($field_ID::'.$field_ID.')', 3);
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';

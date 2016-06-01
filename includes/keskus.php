@@ -8,8 +8,15 @@ require('includes/Klogger.php');        // Log asjad
 class Keskus {
 
   //Get KEY's for actions!
+  public $_field_ADD = "af";  //kas näidata kasutajale vormi Fieldi lisamiseks
   public $_field_DELETE = "df";
   public $_field_OPEN = "of";
+  
+  public $_field_ADDED = "fa";  //kasutaja postitas Fieldi, hakka töötlema!
+  
+  public $_habit_ADD = "ah";
+  public $_habit_DELETE = "dh";
+  public $_habit_OPEN = "oh";
 
   private $_logger;
  
