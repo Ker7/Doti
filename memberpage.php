@@ -28,6 +28,7 @@ require('layout/header.php');
 				
           <?php require('layout/view-fields.php'); ?>
           <?php if (isset($_GET[ $Keskus->_field_OPEN ])) { include('layout/view-field-habits.php'); } ?>
+          <?php if (isset($_GET[ $Keskus->_field_ADD ])) { include('layout/form-field-add.php'); } ?>
 		  </div>
 			
 	</div>

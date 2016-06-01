@@ -14,7 +14,7 @@
     <!-- jqPlotteri plugin omakorda. Logaritmiliste graafikutelgede kuvamiseks! -->
     <script language="javascript" type="text/javascript" src="http://localhost/doti/style/jqplot.logAxisRenderer.js"></script>
         
-    <link rel="stylesheet" type="text/css" href="http://localhost/doti/vendor\bootstrap-3.3.6-dist\bootstrap-3.3.6-dist\css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="http://localhost/doti/style/main.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/doti/vendor\bootstrap-3.3.6-dist\bootstrap-3.3.6-dist\css/bootstrap.min.css">
 </head>
 <body>

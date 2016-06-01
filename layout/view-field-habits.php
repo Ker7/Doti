@@ -31,7 +31,7 @@ if (count($fieldhabits)==0) {
   echo 'No Goal habits here...<a href="' . $Keskus->getSubPageParams("memberpage.php",
     array(
       $Keskus->_habit_ADD => 1))
-          . '" title="Add Field!">Add Fields</p>';
+          . '" title="Add Field!">Add Habits</p>';
 }
 
 
