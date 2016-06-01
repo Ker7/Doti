@@ -20,7 +20,7 @@ require('layout/header.php');
 
 	<div class="row">
 
-	    <div class="col-md-8" style="overflow: auto;">
+	    <div class="" style="overflow: auto;">
 			
 				<h2>Welcome <?php echo $_SESSION['username']; ?></h2>
 				
@@ -28,9 +28,11 @@ require('layout/header.php');
 				
           <?php require('layout/view-fields.php'); ?>
           <?php if (isset($_GET[ $Keskus->_field_OPEN ])) { include('layout/view-field-habits.php'); } ?>
+		  <?php if (isset($_GET[ $Keskus->_field_ADD ])) { include('layout/form-field-add.php'); } ?>
 		  </div>
 			
 	</div>
+	
 
 
 </div>
