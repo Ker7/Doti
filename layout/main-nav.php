@@ -2,14 +2,13 @@
 /* @todo eralid faili menüü */
 echo '
         <div class="main-menu">
-          <p class="btn btn-default" >
-<a href="' . $Keskus->getSubPageParams("memberpage.php",
-    array(
-      $Keskus->_field_ADD => 1))
-          . '" title="Add Field!">Add Fields</p>
-          <p class="btn btn-default" ><a class="bluecol" href="#">Mess with Habits</a></p>
-          <p class="btn btn-default" ><a class="bluecol" href="#">Settings</a></p>
-          <p class="btn btn-default" ><a class="bluecol" href="' . $Keskus->getSubPage("logout.php") . '">Logout</a></p>
+          <a href="' . $Keskus->getSubPageParams("memberpage.php", array(
+                  $Keskus->_field_ADD => 1)) . '" title="Add Field!">
+            <p class="btn btn-default" >Add Fields</p>
+          </a>
+          <a class="bluecol" href="#"><p class="btn btn-default" >Mess with Habits</p></a>
+          <a class="bluecol" href="#"><p class="btn btn-default" >Settings</p></a>
+          <a class="bluecol" href="' . $Keskus->getSubPage("logout.php") . '"><p class="btn btn-default" >Logout</p></a>
           <hr>
         </div>';
 ?>

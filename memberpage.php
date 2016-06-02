@@ -9,6 +9,16 @@
  */
 if(!$user->is_logged_in()){ header('Location: login.php'); } 
 
+
+//Process GET requests Herrr...
+if (isset($_GET[ $Keskus->_field_ADDED ])) {
+		
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["inputFieldName"] .'"',4);
+				
+		//include('layout/view-field-habits.php');
+}
+
+
 //define page title
 $title = 'Members Page';
 
@@ -29,12 +39,13 @@ require('layout/header.php');
           <?php require('layout/view-fields.php'); ?>
           <?php if (isset($_GET[ $Keskus->_field_OPEN ])) { include('layout/view-field-habits.php'); } ?>
           <?php if (isset($_GET[ $Keskus->_field_ADD ])) { include('layout/form-field-add.php'); } ?>
+					<?php //include(''); ?>
 		  </div>
 			
 	</div>
 	
 	<div class="row">
-          <?php require('layout/view-plotter-test.php'); ?>
+          <?php require('layout/x-test-view-plotter.php'); ?>
 	</div>
 
 

@@ -18,8 +18,6 @@ foreach($fieldhabits as $fh) {
   echo '<div class="habit-pane">';
     echo '<div class="habit-title">';
       // Miski funktsioon, mis loob vastavaid linke, kustutamisel tuleb seda tegevust logida jne
-      //echo '<a href="' . $Keskus->getSubPage("memberpage.php", "/?" . $Keskus->_field_DELETE . "=" . $ef["FieldId"]) . '" title="Delete Field!">[x]</a>';
-      //@todo GET params lisada nii arrayna!
       echo '<h4>';
         echo '<span class="">'.utf8_encode($fh['HabitName']) . ' <sup>[' . utf8_encode($fh['SpecName']) .']</sup></span>';
       echo '</h4>';

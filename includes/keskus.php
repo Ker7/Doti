@@ -8,9 +8,9 @@ require('includes/Klogger.php');        // Log asjad
 class Keskus {
 
   //Get KEY's for actions!
-  public $_field_ADD = "af";  //kas näidata kasutajale vormi Fieldi lisamiseks
-  public $_field_DELETE = "df";
-  public $_field_OPEN = "of";
+  public $_field_ADD = "af";    //Kasutaja vajutab nuppu LISA FIELD ja siis edastatake see GET key => 1 ... Selle alusel kuvan vormi
+  public $_field_DELETE = "df"; //Fieldi kustutamise nupu GET key => fieldID
+  public $_field_OPEN = "of";   //Avamiseks ja habitite kuvamiseks
   
   public $_field_ADDED = "fa";  //kasutaja postitas Fieldi, hakka töötlema!
   
@@ -19,6 +19,7 @@ class Keskus {
   public $_habit_OPEN = "oh";
 
   private $_logger;
+  private $_userActionsLogger;  //@todo
  
   function __construct(){
     //Set up logger capabillityes
@@ -37,7 +38,16 @@ class Keskus {
          $log->error('Printttttt'); //Prints to the log file
          $log->debug('x = 5'); //Prints nothing due to current severity threshhold
       */
-    $this->_logger = new Katzgrau\KLogger\Logger('log/', Psr\Log\LogLevel::DEBUG);
+    $this->_logger = new Katzgrau\KLogger\Logger('log/', Psr\Log\LogLevel::DEBUG, array (
+        'extension'      => 'txt',
+        'dateFormat'     => 'Y-m-d G:i:s',
+        'filename'       => false,
+        'flushFrequency' => false,
+        'prefix'         => 'log_',
+        'logFormat'      => false,
+        'appendContext'  => true,
+    ));
+    $this->_userActionsLogger = "Miski mis tekitab SQL kirjeid!?";  //@todo
   }
   
   /* For building links
@@ -51,8 +61,9 @@ class Keskus {
   
   }
   
-  /* For building links with params v2!
+  /* For building links with GET parameters!
    *
+   * @var $string string "page.php"
    * @var $add array Get parameetrid
    */
   public function getSubPageParams($string = "", $add){
@@ -76,12 +87,14 @@ class Keskus {
   
   }
   
-  /* Level 1-8
+  /* For Logging stuff for logging purposes... Folder in root is /Log
+   *
+   * Level 1-8
    */
   public function logi($msg = "", $level = 1) {
     if (strlen($msg) == 0) return;
     
-    $msg .= "\t\t\t\t".__FILE__;  //Lisan lõppu faili, aga see vist pointless @todo remove line
+    $msg .= "\t".__FILE__;  //Lisan lõppu faili, aga see vist pointless @todo remove line
     
     try{
       switch($level) {

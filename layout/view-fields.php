@@ -15,8 +15,6 @@ foreach($myfields as $ef) {
   echo '<div class="field-line">';
   
     // Miski funktsioon, mis loob vastavaid linke, kustutamisel tuleb seda tegevust logida jne
-    //echo '<a href="' . $Keskus->getSubPage("memberpage.php", "/?" . $Keskus->_field_DELETE . "=" . $ef["FieldId"]) . '" title="Delete Field!">[x]</a>';
-    //@todo GET params lisada nii arrayna!
     echo '<div class="field-remove">';
       echo '<a href="'
           . $Keskus->getSubPageParams(
