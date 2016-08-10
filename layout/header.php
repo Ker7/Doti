@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="http://localhost/doti/style/jquery.jqplot.css" />
     <!-- jqPlotteri plugin omakorda. Logaritmiliste graafikutelgede kuvamiseks! -->
     <script language="javascript" type="text/javascript" src="http://localhost/doti/style/jqplot.logAxisRenderer.js"></script>
-    <!-- Bootstrapi JS hetkel vaid Modal' akende jaoks... äkki piisabki vaid Modals.js'st ? -->
+    <!-- Bootstrapi JS hetkel vaid Modal' akende jaoks... Ã¤kki piisabki vaid Modals.js'st ? -->
     <script language="javascript" type="text/javascript" src="http://localhost/doti/style/bootstrap.min.js"></script>
     
     <script language="javascript" type="text/javascript" src="http://localhost/doti/style/main.js"></script>

@@ -3,24 +3,24 @@
 -- Seoste kaotamine
 --
 
+-- Ei kasutagi seoseid!!! Hard Code regret?    
+--ALTER TABLE doti_user_habits
+--DROP FOREIGN KEY FKHabitOwner,
+--DROP FOREIGN KEY FKhabit,
+--DROP FOREIGN KEY FKhabitSpec;
 
-ALTER TABLE doti_user_habits
-DROP FOREIGN KEY FKHabitOwner,
-DROP FOREIGN KEY FKhabit,
-DROP FOREIGN KEY FKhabitSpec;
+--ALTER TABLE doti_user_fields
+--DROP FOREIGN KEY FKFieldOwner,
+--DROP FOREIGN KEY FKField;
 
-ALTER TABLE doti_user_fields
-DROP FOREIGN KEY FKFieldOwner,
-DROP FOREIGN KEY FKField;
+--ALTER TABLE doti_habits
+--DROP FOREIGN KEY FKHabitAuthor;
 
-ALTER TABLE doti_habits
-DROP FOREIGN KEY FKHabitAuthor;
+--ALTER TABLE doti_spec
+--DROP FOREIGN KEY FKHSpecAuthor;
 
-ALTER TABLE doti_spec
-DROP FOREIGN KEY FKHSpecAuthor;
-
-ALTER TABLE doti_fields
-DROP FOREIGN KEY FKFieldAuthor;
+--ALTER TABLE doti_fields
+--DROP FOREIGN KEY FKFieldAuthor;
 --
 
 DROP TABLE doti_user_habits;
@@ -126,31 +126,31 @@ CREATE TABLE IF NOT EXISTS `doti_spec` (
 COMMENT='Sündmuste täpsustus, näiteks koht, aeg, olukord vms, mitte sassi ajada väärtuse ehk tegevuse mõõduga, nt trenni aeg, ostu summa, kcal jne.';
 
 -- =============================================================================================
--- FOREIGN KEYD ================================================================================
+-- FOREIGN KEYD neid ka ei kasuta enam praegu  =================================================
 -- =============================================================================================
 
-ALTER TABLE `doti_fields`
-  ADD CONSTRAINT `FKFieldAuthor` FOREIGN KEY (`author_users_id`) REFERENCES `doti_users` (`id`);
-
-ALTER TABLE `doti_user_fields`
-  ADD CONSTRAINT `FKField` FOREIGN KEY (`fields_id`) REFERENCES `doti_fields` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FKFieldOwner` FOREIGN KEY (`users_id`) REFERENCES `doti_users` (`id`);
-  
-ALTER TABLE `doti_habits`
-  ADD CONSTRAINT `FKHabitAuthor` 
-    FOREIGN KEY (`habitauthor_users_id`) 
-        REFERENCES `doti_users` (`id`)
-          ON DELETE NO ACTION
-          ON UPDATE NO ACTION;
-
-ALTER TABLE `doti_user_habits`
-  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`user_fields_id`) REFERENCES `doti_user_fields` (`id`),
-  ADD CONSTRAINT `FKhabit` FOREIGN KEY (`habits_id`) REFERENCES `doti_habits` (`id`),
-  ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_spec` (`id`);
-  
-ALTER TABLE `doti_spec`
-  ADD CONSTRAINT `FKHSpecAuthor` FOREIGN KEY (`habitspec_author_users_id`) REFERENCES `doti_users` (`id`);
+--ALTER TABLE `doti_fields`
+--  ADD CONSTRAINT `FKFieldAuthor` FOREIGN KEY (`author_users_id`) REFERENCES `doti_users` (`id`);
+--
+--ALTER TABLE `doti_user_fields`
+--  ADD CONSTRAINT `FKField` FOREIGN KEY (`fields_id`) REFERENCES `doti_fields` (`id`)
+--    ON DELETE NO ACTION
+--    ON UPDATE NO ACTION,
+--  ADD CONSTRAINT `FKFieldOwner` FOREIGN KEY (`users_id`) REFERENCES `doti_users` (`id`);
+--  
+--ALTER TABLE `doti_habits`
+--  ADD CONSTRAINT `FKHabitAuthor` 
+--    FOREIGN KEY (`habitauthor_users_id`) 
+--        REFERENCES `doti_users` (`id`)
+--          ON DELETE NO ACTION
+--          ON UPDATE NO ACTION;
+--
+--ALTER TABLE `doti_user_habits`
+--  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`user_fields_id`) REFERENCES `doti_user_fields` (`id`),
+--  ADD CONSTRAINT `FKhabit` FOREIGN KEY (`habits_id`) REFERENCES `doti_habits` (`id`),
+--  ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_spec` (`id`);
+--  
+--ALTER TABLE `doti_spec`
+--  ADD CONSTRAINT `FKHSpecAuthor` FOREIGN KEY (`habitspec_author_users_id`) REFERENCES `doti_users` (`id`);
 
 --  doti_field_datalog --  

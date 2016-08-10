@@ -60,7 +60,7 @@ INSERT INTO `doti_spec` (`name`, `habitspec_author_users_id`) VALUES
 ('Alhkoholi', '1'), 
 ('Suitsu', '1'), 
 ('30 minutit kitarri päevas', '1'), 
-('Tee KODULEHTI!', '3')
+('Tee KODULEHTI!', '3');
 
 INSERT INTO `doti_user_habits` (`id`, `user_fields_id`, `habits_id`, `habitspec_id`) VALUES
 (NULL, '1', '1', '1'),

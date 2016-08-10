@@ -10,11 +10,16 @@
 if(!$user->is_logged_in()){ header('Location: login.php'); } 
 
 
-//Process GET requests Herrr...
+//Process GET requests
 if (isset($_GET[ $Keskus->_field_ADDED ])) {
-		
 		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["inputFieldName"] .'"',4);
-				
+		//include('layout/view-field-habits.php');
+}
+if (isset($_GET[ $Keskus->_field_DELETE ])) {
+		
+		$user->unsetFieldPersonal($_SESSION["memberID"], $_GET[ $Keskus->_field_DELETE ]);
+		
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "'. $_GET["df"] .'"',4);
 		//include('layout/view-field-habits.php');
 }
 

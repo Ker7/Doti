@@ -24,11 +24,12 @@ echo '
       <!-- ################ FROM BEGIN ################ -->
         <form class="form-inline" action="?'.$Keskus->_field_ADDED.'=1" method="post" role="form">
           <div class="form-group">
-            <input type="text" class="form-control" id="inputFieldName" name="inputFieldName" placeholder="Name of the Field">
+            <input type="text" size="24" onkeyup="showResult(this.value)" autocomplete="off" class="form-control" id="inputFieldName" name="inputFieldName" placeholder="Name of the Field">
+            <div id="livesearch"></div>
           </div>
       
           <div class="form-group">
-            <label for="sel1">#color:</label>
+            <label for="sel1">Choose a color:</label>
             <select class="form-control" id="selectColor" name="selectColor">
               <option>Acid Green</option>
               <option>Aero</option>
@@ -58,7 +59,12 @@ echo '
   </div>
 </div>
   
-      <!-- &&&&&&&&&&&& Test confirm button &&&&&&&&&&&&&&& -->
+      <!-- &&&&&&&&&&&&
+      
+      Test confirm button
+      This is not working as the final delete button has no effect :/
+      
+      &&&&&&&&&&&&&&& -->
       <button type="button" class="btn btn-warning" data-href="/delete.php?id=54" data-toggle="modal" data-target="#confirm-delete">Shit pants</button>
 <!-- &&&&&&&&&&&& Test confirm button &&&&&&&&&&&&&&& -->
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

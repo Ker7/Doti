@@ -67,6 +67,28 @@ class User extends Password{
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
   }
+	
+	/* unSet ehk lõhu habiti ja kasutaja vaheline seos!
+	 */
+	public function unsetFieldPersonal($member_ID, $field_ID){
+		try {
+			$stmt = $this->_db->prepare(
+     'DELETE from doti_user_fields
+		 WHERE
+				users_id = :myId
+		 AND
+				fields_id = :fieldsId;');
+			$stmt->execute(array('myId' => $member_ID, 'fieldsId' => $field_ID));
+				
+		//print_r($stmt); idk see eemaldas selle... returnimist hetkel ei toimu, isegi kui ei leitud mida eemaldada,... oma mure?!
+				
+			return ;
+		
+
+		} catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+		}
+	}
     
 	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel...
 	
