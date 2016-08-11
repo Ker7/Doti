@@ -1,6 +1,25 @@
 <?php
 // Array with names
 $a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
+$a[] = "Anna";
 $a[] = "Brittany";
 $a[] = "Cinderella";
 $a[] = "Diana";
@@ -45,7 +64,7 @@ if ($q !== "") {
             if ($hint === "") {
                 $hint = $name;
             } else {
-                $hint .= ", $name";
+                $hint .= "<BR> $name";
             }
         }
     }

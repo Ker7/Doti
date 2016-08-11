@@ -4,6 +4,7 @@ Doti | Todo manager tracker
 Used:
 Login and Registration system: http://daveismyname.com/login-and-registration-system-with-php-bp
 Logging: Katzgrau\KLogger
+Bootstrap & Bootstrap Modal http://www.w3schools.com/bootstrap/bootstrap_modal.asp
 Visual Charts: http://www.jqplot.com
 Js Suggestions: http://www.w3schools.com/php/php_ajax_livesearch.asp
 

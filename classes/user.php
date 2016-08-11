@@ -51,7 +51,7 @@ class User extends Password{
     try {
 			$stmt = $this->_db->prepare(
      'SELECT doti_fields.name AS FieldName,
-      doti_user_fields.id as FieldId
+      doti_fields.id as FieldId
       FROM doti_fields 
       LEFT JOIN doti_user_fields
         ON doti_fields.id = doti_user_fields.fields_id
@@ -68,7 +68,31 @@ class User extends Password{
 		}
   }
 	
-	/* unSet ehk lõhu habiti ja kasutaja vaheline seos!
+/* Küsib KÕIK Fieldid
+   *
+   */
+  public function getFieldsAll(){
+    try {
+			$stmt = $this->_db->prepare(
+     'SELECT doti_fields.name AS FieldName,
+      doti_user_fields.id as FieldId
+      FROM doti_fields 
+      LEFT JOIN doti_user_fields
+        ON doti_fields.id = doti_user_fields.fields_id
+      WHERE users_id = :myId
+      ORDER BY FieldName DESC;');
+			$stmt->execute(array('myId' => $member_ID));
+
+//$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		} catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+		}
+  }
+	
+	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel... See ongi nüüd!
+	/* unSet ehk lõhu habiti ja kasutaja vaheline seos. Field ise jääb alles!
 	 */
 	public function unsetFieldPersonal($member_ID, $field_ID){
 		try {
@@ -90,10 +114,8 @@ class User extends Password{
 		}
 	}
     
-	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel...
 	
-  /* Küsib enese Fieldid
-   *
+  /* Küsib habiteid kasutaja Fieldi'i järgi...
    */
   public function getHabits($field_ID){
     try {
@@ -120,10 +142,14 @@ class User extends Password{
   
   // ========================== FUNCTIONS END =================================
 
+	/* Does log out!
+	 */
 	public function logout(){
 		session_destroy();
 	}
 
+	/* If logged in return TRUE
+	 */
 	public function is_logged_in(){
 		if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 			return true;

@@ -26,6 +26,17 @@ echo '
           <div class="form-group">
             <input type="text" size="24" onkeyup="showResult(this.value)" autocomplete="off" class="form-control" id="inputFieldName" name="inputFieldName" placeholder="Name of the Field">
             <div id="livesearch"></div>
+            
+              <div>Choose a browser from this list:</div>
+              <input list="browsers" />
+              <datalist id="browsers">
+                <option value="Chrome">
+                <option value="Firefox">
+                <option value="Internet Explorer">
+                <option value="Opera">
+                <option value="Safari">
+              </datalist>
+              
           </div>
       
           <div class="form-group">
