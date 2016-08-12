@@ -93,6 +93,9 @@ class User extends Password{
 	
 	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel... See ongi nüüd!
 	/* unSet ehk lõhu habiti ja kasutaja vaheline seos. Field ise jääb alles!
+	 *
+	 * returns affected rows
+	 * Deal with errors after calling this!
 	 */
 	public function unsetFieldPersonal($member_ID, $field_ID){
 		try {
@@ -103,10 +106,12 @@ class User extends Password{
 		 AND
 				fields_id = :fieldsId;');
 			$stmt->execute(array('myId' => $member_ID, 'fieldsId' => $field_ID));
+			
+			$del = $stmt->rowCount();
 				
-		//print_r($stmt); idk see eemaldas selle... returnimist hetkel ei toimu, isegi kui ei leitud mida eemaldada,... oma mure?!
+		//print_r($stmt); //idk see eemaldas selle... returnimist hetkel ei toimu, isegi kui ei leitud mida eemaldada,... oma mure?!
 				
-			return ;
+			return $del;
 		
 
 		} catch(PDOException $e) {

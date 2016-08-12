@@ -24,17 +24,25 @@ echo '
       <!-- ################ FROM BEGIN ################ -->
         <form class="form-inline" action="?'.$Keskus->_field_ADDED.'=1" method="post" role="form">
           <div class="form-group">
-            <input type="text" size="24" onkeyup="showResult(this.value)" autocomplete="off" class="form-control" id="inputFieldName" name="inputFieldName" placeholder="Name of the Field">
-            <div id="livesearch"></div>
             
               <div>Choose a browser from this list:</div>
-              <input list="browsers" />
+              <input list="browsers" id="selectField" name="selectField" />
               <datalist id="browsers">
-                <option value="Chrome">
-                <option value="Firefox">
-                <option value="Internet Explorer">
-                <option value="Opera">
-                <option value="Safari">
+              <!-- Query and make list here, example:
+                 -->
+                <option value="Chrome">Kromosoom</option>
+                <option value="Firefox">aFiira</option>
+                <option value="Internet Explorer">Esp</option>
+                <option value="Opera">oosa</option>
+                <option value="Safari">fafa</option>
+                
+                <option value="1Chrome">
+                <option value="1Firefox">
+                <option value="1Internet Explorer">
+                <option value="1Opera">
+                <option value="1Safari">
+                 
+                 
               </datalist>
               
           </div>

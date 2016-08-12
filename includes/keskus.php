@@ -112,6 +112,32 @@ class Keskus {
       return ;
     }
   }
+  /* Echo messages straight out!
+   * 1 - success green
+   * 2 - info blue
+   * 3 - warning yellow
+   * 4 - red
+   * 
+   */
+  public function alerti($msg, $level){
+    
+    $class = "";
+    $heading = "";
+    
+    //@todo Translate herr
+    switch($level){
+      case(1): $class="success"; $heading="Success"; break;
+      case(2): $class="info"; $heading="Info"; break;
+      case(3): $class="warning"; $heading="Warning"; break;
+      case(4): $class="danger"; $heading="Danger"; break;
+      default: break;
+    }
+    
+    echo '<div class="alert alert-'.$class.'">
+            <strong>'. $heading .'!</strong> '. $msg .'
+          </div>';
+    
+  }
  
  
   // . . .

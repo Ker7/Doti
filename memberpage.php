@@ -12,14 +12,20 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 //Process GET requests
 if (isset($_GET[ $Keskus->_field_ADDED ])) {
-		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["inputFieldName"] .'"',4);
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["selectField"] .'"',4);
 		//include('layout/view-field-habits.php');
 }
-if (isset($_GET[ $Keskus->_field_DELETE ])) {
+if (isset($_POST[ $Keskus->_field_DELETE ])) {
 		
-		$user->unsetFieldPersonal($_SESSION["memberID"], $_GET[ $Keskus->_field_DELETE ]);
+		$removeFieldValue = $user->unsetFieldPersonal($_SESSION["memberID"], $_POST[ $Keskus->_field_DELETE ]);
 		
-		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "'. $_GET["df"] .'"',4);
+		if ($removeFieldValue==0) {
+				$Keskus->alerti("Field removal failed for some reason.", 3);
+		} else {
+				$Keskus->alerti("Field removed!", 2);
+		}
+		
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "'. $_POST["df"] .'"',4);
 		//include('layout/view-field-habits.php');
 }
 
@@ -36,8 +42,10 @@ require('layout/header.php');
 	<div class="row">
 
 	    <div class="" style="overflow: auto;">
-			
-				<h2>Welcome <?php echo $_SESSION['username']; ?></h2>
+				
+				<a style="width: 96px; float: left; margin: 16px;" href="<?php echo $Keskus->getSubPage("memberpage.php"); ?>"><img src="<?php echo $Keskus->getSubPage('style/logo.png'); ?>"/></a>
+									
+				<h2 style="width: 100%; float: left;">Welcome, <?php echo $_SESSION['username']; ?>!</h2>
 				
           <?php require('layout/main-nav.php'); ?>
 				

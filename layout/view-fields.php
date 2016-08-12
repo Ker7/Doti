@@ -28,12 +28,14 @@ foreach($myfields as $ef) {
 
 echo '  <!-- Trigger the modal with a button -->
 <!--button type="button" class="btn btn-doti btn-lg" data-toggle="modal" data-target="#removeField">Open Modal</button-->
-<a data-toggle="modal" data-target="#removeField'.$ef["FieldId"].'" href="'
-          . $Keskus->getSubPageParams(
+<a data-toggle="modal" data-target="#removeField'.$ef["FieldId"].'" href="#'
+          . /* Proovine modalisse see panna!
+             *
+             *$Keskus->getSubPageParams(
                                       "memberpage.php",
                                       array(
                                         $Keskus->_field_DELETE => $ef["FieldId"], "asd" => 123, "rs" => 32))
-          . '" title="Delete Field!">[x!]</a>
+          . */'" title="Delete Field!">[x!]</a>
 
 <!-- Modal -->
 <div id="removeField'.$ef["FieldId"].'" class="modal fade" role="dialog">
@@ -43,14 +45,20 @@ echo '  <!-- Trigger the modal with a button -->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add a new Field</h4>
+        <h4 class="modal-title">Removing a Field. You sure?</h4>
       </div>
       <div class="modal-body">
         
       <!-- ################ FROM BEGIN ################ -->
-        <form class="form-inline" action="?'.$Keskus->_field_ADDED.'=1" method="post" role="form">
-
-          <button type="submit" class="btn btn-success">Create</button>
+        <form class="form-inline" action="#'./*$Keskus->getSubPageParams(
+                                      "memberpage.php",
+                                      array(
+                                        $Keskus->_field_DELETE => $ef["FieldId"])) .*/ '" method="post" role="form">
+        
+          <input type="hidden" name="'.$Keskus->_field_DELETE.'" value="'.$ef["FieldId"].'">
+          
+          <button type="submit" class="btn btn-warning">Remove <b>'. $ef["FieldName"] .'</b></button>
+          
         </form>
       <!-- ################ FROM END ################ -->
       

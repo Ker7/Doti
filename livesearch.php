@@ -1,25 +1,6 @@
 <?php
 // Array with names
 $a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
-$a[] = "Anna";
 $a[] = "Brittany";
 $a[] = "Cinderella";
 $a[] = "Diana";
