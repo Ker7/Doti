@@ -134,3 +134,8 @@ a {
 .pealkiri {
 	color: #6ff;
 }
+
+.field-create-btn {
+	display: block!important;
+	margin: 20px auto;
+}

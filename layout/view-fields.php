@@ -75,11 +75,11 @@ echo '  <!-- Trigger the modal with a button -->
     echo   '</div> <!-- div field-remove -->';
     echo '
       <a class="bluecol" href="' . $Keskus->getSubPage("memberpage.php", "/?of=" . $ef["FieldId"]) . '" title="Open">
-      <div class="field-name" data-id="' . $ef["FieldId"] . '">' . utf8_encode($ef['FieldName']) . '</div>
+      <div class="field-name" data-id="' . $ef["FieldId"] . '">' . $ef['FieldName'] . '</div>
       <div class="field-open" > ';
       
       for ($i=0; $i<rand(1,10); $i++){
-        echo '¤';
+        echo "#";
         }
       
       echo '</a> ';

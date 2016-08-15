@@ -11,9 +11,35 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 
 //Process GET requests
-if (isset($_GET[ $Keskus->_field_ADDED ])) {
-		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["selectField"] .'"',4);
+if (isset($_POST[ $Keskus->_field_ADDED ])) {
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["selectField"] .'"',3);
 		//include('layout/view-field-habits.php');
+		
+		$Keskus->alerti("Field lisati: ".$_POST['selectField'], 2);
+		
+		/* Logic here:
+		 * 	- Check if field name already doesn't exist (Duplicate post submit)
+		 *	- IF true -> Prompt message!
+		 *	- IF false -> Add new field!
+		 *
+		 *
+		 */
+		
+		$fields = $user->getFieldsAll();	//Kõik Fieldid süsteemist
+		
+		$foundYet = false;		//Has founf a duplicate yet?!
+		
+		foreach($fields as $f) {
+				if (in_array($_POST['selectField'], $f)) {
+						$foundYet = true;
+						}
+		}
+
+		echo ( $foundYet? "Duplikaat!" : "Uus!");
+					
+		//echo "<pre>";
+		//print_r($fields);
+		//echo "</pre>";
 }
 if (isset($_POST[ $Keskus->_field_DELETE ])) {
 		
@@ -25,7 +51,7 @@ if (isset($_POST[ $Keskus->_field_DELETE ])) {
 				$Keskus->alerti("Field removed!", 2);
 		}
 		
-		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "'. $_POST["df"] .'"',4);
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "'. $_POST["df"] .'"',3);
 		//include('layout/view-field-habits.php');
 }
 

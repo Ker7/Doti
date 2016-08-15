@@ -75,14 +75,10 @@ class User extends Password{
     try {
 			$stmt = $this->_db->prepare(
      'SELECT doti_fields.name AS FieldName,
-      doti_user_fields.id as FieldId
+      doti_fields.id as FieldId
       FROM doti_fields 
-      LEFT JOIN doti_user_fields
-        ON doti_fields.id = doti_user_fields.fields_id
-      WHERE users_id = :myId
       ORDER BY FieldName DESC;');
-			$stmt->execute(array('myId' => $member_ID));
-
+			$stmt->execute();
 //$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		

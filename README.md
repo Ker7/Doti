@@ -18,4 +18,4 @@ Habit has a Specification.
 
 User can rate the state of the field from 1 to 100, of how he perceives the situation at any point in time. Basically they think they are doing.
 User may set up Reminders for the Habits he has set up, in order to improve in the Field and general.
-With the info from Habits, Doti is able to scetch up a day/week/month/year plan.
+With info from the Habits and the help of the User, Doti is able to sketch up a day/week/month/year plan.

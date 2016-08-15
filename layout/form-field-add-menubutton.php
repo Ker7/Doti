@@ -22,18 +22,20 @@ echo '
       <div class="modal-body">
         
       <!-- ################ FROM BEGIN ################ -->
-        <form class="form-inline" action="?'.$Keskus->_field_ADDED.'=1" method="post" role="form">
+        <form class="form-inline" action="#" method="post" role="form">
           <div class="form-group">
-            
+              
+              <input type="hidden" id="'.$Keskus->_field_ADDED.'" name="'.$Keskus->_field_ADDED.'" value="1" />
+              
               <label for="selectField">Name:</label>
-              <input id="selectField" name="selectField" />
+              <input id="selectField" class="form-control" name="selectField" />
               
           </div>
       
           <div class="form-group">
             <label for="selectColor">Choose a color:</label>
             <select class="form-control" id="selectColor" name="selectColor"  onchange="colourFunction()">
-<option value="#F0F8FF"><div class="colsnip" style="background-color:#F0F8FF;">&nbsp; </div> AliceBlue</option>
+<option value="#F0F8FF">AliceBlue</option>
 <option value="#FAEBD7">AntiqueWhite</option>
 <option value="#00FFFF">Aqua</option>
 <option value="#7FFFD4">Aquamarine</option>
@@ -183,7 +185,7 @@ echo '
 <option value="#9ACD32">YellowGreen</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-success">Create</button>
+          <button type="submit" class="btn btn-success field-create-btn">Create</button>
         </form>
       <!-- ################ FROM END ################ -->
       
