@@ -12,9 +12,12 @@ if(!$user->is_logged_in()){ header('Location: login.php'); }
 
 //Process GET requests Herrr...
 if (isset($_GET[ $Keskus->_field_ADDED ])) {
-		
 		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["inputFieldName"] .'"',4);
-				
+		//include('layout/view-field-habits.php');
+}
+if (isset($_GET[ $Keskus->_field_DELETED ])) {
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') unlinked a field "id:'. $_GET[$Keskus->_field_DELETED] .'"',4);
+		$user->unlinkField( 1, 7 );
 		//include('layout/view-field-habits.php');
 }
 

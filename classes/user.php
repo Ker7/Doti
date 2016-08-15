@@ -69,11 +69,28 @@ class User extends Password{
   }
     
 	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel...
+	// Kasutada vaid ID on riskantne? Well see...
+	public function unlinkField($member_ID, $field_ID) {
+		try {
+			$stmt = $this->_db->prepare(
+		 'DELETE from doti_user_fields
+		 WHERE users_id = :myId
+		 AND fields_id = :fieldId;');
+				$stmt->execute(array('myId' => $member_ID, 'fieldId' => $field_ID));
+	
+	//$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
+				//return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
+	
+			} catch(PDOException $e) {
+				echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+			}
+	}
 	
   /* Küsib enese Fieldid
    *
    */
-  public function getHabits($field_ID){
+	public function getHabits($field_ID){
     try {
 			$stmt = $this->_db->prepare(
      'SELECT

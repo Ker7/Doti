@@ -12,7 +12,8 @@ class Keskus {
   public $_field_DELETE = "df"; //Fieldi kustutamise nupu GET key => fieldID
   public $_field_OPEN = "of";   //Avamiseks ja habitite kuvamiseks
   
-  public $_field_ADDED = "fa";  //kasutaja postitas Fieldi, hakka töötlema!
+  public $_field_ADDED = "fa";  //kasutaja postitas Fieldi, peab hakkama töötlema!
+  public $_field_DELETED = "df";  //kasutaja postitas Fieldi, peab hakkama töötlema!
   
   public $_habit_ADD = "ah";
   public $_habit_DELETE = "dh";
