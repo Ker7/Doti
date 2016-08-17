@@ -9,6 +9,8 @@ class Keskus {
 
   //Get KEY's for actions!
   public $_field_ADD = "af";    //Kasutaja vajutab nuppu LISA FIELD ja siis edastatake see GET key => 1 ... Selle alusel kuvan vormi
+                                // Enam vist nii ei tee? POST'is kõik asjad...
+  
   public $_field_DELETE = "df"; //Fieldi kustutamise nupu GET key => fieldID
   public $_field_OPEN = "of";   //Avamiseks ja habitite kuvamiseks
   

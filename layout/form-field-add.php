@@ -26,7 +26,7 @@ echo '
           <div class="form-group">
             
               <div>Choose a browser from this list:</div>
-              <input list="browsers" id="selectField" name="selectField" />
+              <input list="browsers" id="inputFieldName" name="inputFieldName" />
               <datalist id="browsers">
               <!-- Query and make list here, example:
                  -->
@@ -49,7 +49,7 @@ echo '
       
           <div class="form-group">
             <label for="sel1">Choose a color:</label>
-            <select class="form-control" id="selectColor" name="selectColor">
+            <select class="form-control" id="inputSelectFieldColor" name="inputSelectFieldColor">
               <option>Acid Green</option>
               <option>Aero</option>
               <option>Aero Blue</option>

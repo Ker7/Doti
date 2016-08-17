@@ -27,14 +27,14 @@ echo '
               
               <input type="hidden" id="'.$Keskus->_field_ADDED.'" name="'.$Keskus->_field_ADDED.'" value="1" />
               
-              <label for="selectField">Name:</label>
-              <input id="selectField" class="form-control" name="selectField" />
+              <label for="inputFieldName">Name:</label>
+              <input id="inputFieldName" class="form-control" name="inputFieldName" />
               
           </div>
       
           <div class="form-group">
-            <label for="selectColor">Choose a color:</label>
-            <select class="form-control" id="selectColor" name="selectColor"  onchange="colourFunction()">
+            <label for="inputSelectFieldColor">Choose a color:</label>
+            <select class="form-control" id="inputSelectFieldColor" name="inputSelectFieldColor"  onchange="colourFunction()">
 <option value="#F0F8FF">AliceBlue</option>
 <option value="#FAEBD7">AntiqueWhite</option>
 <option value="#00FFFF">Aqua</option>

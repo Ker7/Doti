@@ -44,8 +44,10 @@ class User extends Password{
   
   // ___________________________ MINU FUNKID _________________________________
   
-  /* Küsib enese Fieldid
-   *
+  /* Küsib kõik $member'iga SEOTUD fieldid User<->Field tabel: doti_user_fields
+	 *
+	 * Mai-tea-miks on vajalik eraldi array'sse toppida, et ühekaupa utf8_encode ära teha...
+	 * print_r() keerab ka kohe selle pekki, kui pole enkooditud, must investigate
    */
   public function getFieldsPersonal($member_ID){
     try {
@@ -58,30 +60,53 @@ class User extends Password{
       WHERE users_id = :myId
       ORDER BY FieldName DESC;');
 			$stmt->execute(array('myId' => $member_ID));
-
-//$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		
+		$p = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		$RetFields = array(); // seda töötlen läbi...
+		
+		foreach($p as $field){
+				$tmpAr = array();
+				$tmpAr["FieldId"] 	= $field["FieldId"];
+				$tmpAr["FieldName"] = utf8_encode($field["FieldName"]);
+				//$field["FieldName"] = "1".utf8_encode($field["FieldName"]);
+				$RetFields[] = $tmpAr;
+		}
+
+		return $RetFields;
 
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
   }
 	
-/* Küsib KÕIK Fieldid
+  /* Küsib KÕIK Fieldid kelle autor on $member
    *
    */
-  public function getFieldsAll(){
+  public function getFieldsAuthor($member_ID){
     try {
 			$stmt = $this->_db->prepare(
      'SELECT doti_fields.name AS FieldName,
       doti_fields.id as FieldId
       FROM doti_fields 
+      WHERE author_users_id = :myId
       ORDER BY FieldName DESC;');
-			$stmt->execute();
-//$Keskus->logi('getFieldsPersonal($memberID::'.$member_ID.')', 3); SIIN EI TEA KES KESKUS ON
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->execute(array('myId' => $member_ID));
 		
+		$p = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		
+		$RetFields = array(); // seda töötlen läbi...
+
+		foreach($p as $field){
+				$tmpAr = array();
+				$tmpAr["FieldId"] 	= $field["FieldId"];
+				$tmpAr["FieldName"] = utf8_encode($field["FieldName"]);
+				//$field["FieldName"] = "1".utf8_encode($field["FieldName"]);
+				$RetFields[] = $tmpAr;
+		}
+		
+		return $RetFields;
+
 		} catch(PDOException $e) {
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
@@ -114,6 +139,9 @@ class User extends Password{
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
 	}
+	
+	// @todo setFieldPersonal($member_ID, $field_ID)
+	// Kui link an unlinked or a new Field with this's
     
 	
   /* Küsib habiteid kasutaja Fieldi'i järgi...

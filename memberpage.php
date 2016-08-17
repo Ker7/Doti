@@ -9,13 +9,21 @@
  */
 if(!$user->is_logged_in()){ header('Location: login.php'); } 
 
+//
+// Process POST requests
+//
 
-//Process GET requests
+/*	Field lisati
+ *
+ *	$_POST $Keskus->_field_ADDED is set
+ *
+ *	@var String inputFieldName
+ *	@var String inputSelectFieldColor
+ */
 if (isset($_POST[ $Keskus->_field_ADDED ])) {
-		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["selectField"] .'"',3);
+		$Keskus->logi('User '.$_SESSION["username"].'(id:'.$_SESSION["memberID"].') added a field "'. $_POST["inputFieldName"] .'"',3);
 		//include('layout/view-field-habits.php');
 		
-		$Keskus->alerti("Field lisati: ".$_POST['selectField'], 2);
 		
 		/* Logic here:
 		 * 	- Check if field name already doesn't exist (Duplicate post submit)
@@ -25,18 +33,38 @@ if (isset($_POST[ $Keskus->_field_ADDED ])) {
 		 *
 		 */
 		
-		$fields = $user->getFieldsAll();	//Kõik Fieldid süsteemist
+		$fields = $user->getFieldsAuthor($_SESSION['memberID']);	//Kõik Fieldid süsteemist
+		//$fields = $user->getFieldsPersonal($_SESSION['memberID']);
+		
+		//print_r($fields);
 		
 		$foundYet = false;		//Has founf a duplicate yet?!
+		$matching = "";
 		
+		//Hakkan võrdlema kas juba äkki eksisteerib selline Field.
+		// @todo Kui on lahti lingitud on ikkagi tema loodud. seega peaks uuesti linkimiseks mingi süsteem olema...
 		foreach($fields as $f) {
-				if (in_array($_POST['selectField'], $f)) {
+				$var1 = mb_strtolower($_POST['inputFieldName']);
+				$var2 = mb_strtolower($f['FieldName']);
+				if ($var1 == $var2) {
 						$foundYet = true;
-						}
+						$matching = $f['FieldName'];
+				}
 		}
 
 		echo ( $foundYet? "Duplikaat!" : "Uus!");
-					
+		
+		if (!$foundYet) {
+				// Now add field!!!
+				
+				
+				$Keskus->alerti("Field creation failed for: ".$_POST['inputFieldName'], 3);
+				
+				$Keskus->alerti("Field added: ".$_POST['inputFieldName'], 2);
+		} else {
+				$Keskus->alerti("Field (".$_POST['inputFieldName'].") already exists: ".$matching, 3);
+				}
+			
 		//echo "<pre>";
 		//print_r($fields);
 		//echo "</pre>";

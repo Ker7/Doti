@@ -6,7 +6,7 @@ include('classes/phpmailer/mail.php');
 require '/../vendor/autoload.php';      // Autoloading   "!composer install"
 require('includes/Keskus.php');         // Pohiasjad
 
-ob_start();
+//ob_start();
 session_start();
 
 //set timezone

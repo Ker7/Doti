@@ -19,8 +19,8 @@ function invertColor(hexTripletColor) {
 }
 
 function colourFunction() {
-var myselect = document.getElementById("selectColor");
-var mfname = document.getElementById("selectField");
+var myselect = document.getElementById("inputSelectFieldColor");
+var mfname = document.getElementById("inputFieldName");
 //colourn = myselect.options[myselect.selectedIndex].className;
 var colourv = myselect.options[myselect.selectedIndex].value;
 var volourvopposite = invertColor(colourv);
