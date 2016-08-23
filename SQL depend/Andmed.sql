@@ -13,19 +13,19 @@ INSERT INTO `doti_users` (`id`, `username`, `password`, `email`, `active`, `priv
 -- Andmete tõmmistamine tabelile `doti_fields`
 --
 
-INSERT INTO `doti_fields` (`name`, `author_users_id`) VALUES
-('Muusika', 1),
-('Pere', 1),
-('Programming', 1),
-('Vaimsus', 1),
-('Tervist', 1),
-('Töö', 1),
-('Raha', 1),
-('Gaming', 1),
-('Tervis', 1),
-('Raha', 1),
-('Nahakunst', 1),
-('Õpetamine', 1);
+INSERT INTO `doti_fields` (`name`, `color`, `author_users_id`) VALUES
+('Muusika', '#FFFFFF', 1),
+('Pere', '#FFFFFF', 1),
+('Programming', '#FFFFFF', 1),
+('Vaimsus', '#FFFFFF', 1),
+('Tervist', '#FFFFFF', 1),
+('Töö', '#FFFFFF', 1),
+('Raha', '#FFFFFF', 1),
+('Gaming', '#FFFFFF', 1),
+('Tervis', '#FFFFFF', 1),
+('Raha', '#FFFFFF', 1),
+('Nahakunst', '#FFFFFF', 1),
+('Õpetamine', '#FFFFFF', 1);
 
 
 INSERT INTO `doti_user_fields` (`users_id`, `fields_id`) VALUES 
@@ -62,12 +62,12 @@ INSERT INTO `doti_spec` (`name`, `habitspec_author_users_id`) VALUES
 ('30 minutit kitarri päevas', '1'), 
 ('Tee KODULEHTI!', '3');
 
-INSERT INTO `doti_user_habits` (`id`, `user_fields_id`, `habits_id`, `habitspec_id`) VALUES
-(NULL, '1', '1', '1'),
-(NULL, '1', '4', '4'),
-(NULL, '1', '4', '5'),
-(NULL, '2', '5', '7'),
-(NULL, '1', '3', '3');
+INSERT INTO `doti_user_habits` (`user_fields_id`, `habits_id`) VALUES
+('1', '5'),
+('5', '1'),
+('5', '2'),
+('7', '4'),
+('7', '3');
 
 
 

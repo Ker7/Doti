@@ -1,27 +1,3 @@
--- UNCOOOOOOOOOOOOOOOOOOOOOOOOO
---
--- Seoste kaotamine
---
-
--- Ei kasutagi seoseid!!! Hard Code regret?    
---ALTER TABLE doti_user_habits
---DROP FOREIGN KEY FKHabitOwner,
---DROP FOREIGN KEY FKhabit,
---DROP FOREIGN KEY FKhabitSpec;
-
---ALTER TABLE doti_user_fields
---DROP FOREIGN KEY FKFieldOwner,
---DROP FOREIGN KEY FKField;
-
---ALTER TABLE doti_habits
---DROP FOREIGN KEY FKHabitAuthor;
-
---ALTER TABLE doti_spec
---DROP FOREIGN KEY FKHSpecAuthor;
-
---ALTER TABLE doti_fields
---DROP FOREIGN KEY FKFieldAuthor;
---
 
 DROP TABLE doti_user_habits;
 DROP TABLE doti_user_fields;
@@ -40,6 +16,7 @@ DROP TABLE IF EXISTS `doti_fields`;
 CREATE TABLE IF NOT EXISTS `doti_fields` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text NOT NULL,
+  `color` varchar(7) NOT NULL DEFAULT '#FFFFFF',
   `author_users_id` int(11) NOT NULL,
   KEY `author_users_id` (`author_users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
@@ -98,10 +75,8 @@ CREATE TABLE IF NOT EXISTS `doti_user_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
-  `habitspec_id` int(11) NOT NULL,
   KEY `user_fields_id` (`user_fields_id`),
-  KEY `habits_id` (`habits_id`),
-  KEY `habitspec_id` (`habitspec_id`)
+  KEY `habits_id` (`habits_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
@@ -124,33 +99,3 @@ CREATE TABLE IF NOT EXISTS `doti_spec` (
   KEY `habitspec_author_users_id` (`habitspec_author_users_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Sündmuste täpsustus, näiteks koht, aeg, olukord vms, mitte sassi ajada väärtuse ehk tegevuse mõõduga, nt trenni aeg, ostu summa, kcal jne.';
-
--- =============================================================================================
--- FOREIGN KEYD neid ka ei kasuta enam praegu  =================================================
--- =============================================================================================
-
---ALTER TABLE `doti_fields`
---  ADD CONSTRAINT `FKFieldAuthor` FOREIGN KEY (`author_users_id`) REFERENCES `doti_users` (`id`);
---
---ALTER TABLE `doti_user_fields`
---  ADD CONSTRAINT `FKField` FOREIGN KEY (`fields_id`) REFERENCES `doti_fields` (`id`)
---    ON DELETE NO ACTION
---    ON UPDATE NO ACTION,
---  ADD CONSTRAINT `FKFieldOwner` FOREIGN KEY (`users_id`) REFERENCES `doti_users` (`id`);
---  
---ALTER TABLE `doti_habits`
---  ADD CONSTRAINT `FKHabitAuthor` 
---    FOREIGN KEY (`habitauthor_users_id`) 
---        REFERENCES `doti_users` (`id`)
---          ON DELETE NO ACTION
---          ON UPDATE NO ACTION;
---
---ALTER TABLE `doti_user_habits`
---  ADD CONSTRAINT `FKHabitOwnerField` FOREIGN KEY (`user_fields_id`) REFERENCES `doti_user_fields` (`id`),
---  ADD CONSTRAINT `FKhabit` FOREIGN KEY (`habits_id`) REFERENCES `doti_habits` (`id`),
---  ADD CONSTRAINT `FKhabitSpec` FOREIGN KEY (`habitspec_id`) REFERENCES `doti_spec` (`id`);
---  
---ALTER TABLE `doti_spec`
---  ADD CONSTRAINT `FKHSpecAuthor` FOREIGN KEY (`habitspec_author_users_id`) REFERENCES `doti_users` (`id`);
-
---  doti_field_datalog --  

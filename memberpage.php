@@ -52,15 +52,15 @@ if (isset($_POST[ $Keskus->_field_ADDED ])) {
 				}
 		}
 
-		echo ( $foundYet? "Duplikaat!" : "Uus!");
+		//echo ( $foundYet? "Duplikaat!" : "Uus!");
 		
 		if (!$foundYet) {
 				// Now add field!!!
 				
-				
-				$Keskus->alerti("Field creation failed for: ".$_POST['inputFieldName'], 3);
-				
-				$Keskus->alerti("Field added: ".$_POST['inputFieldName'], 2);
+			$user->setFieldAdd( $_SESSION['memberID'], $_POST['inputFieldName'], $_POST['inputSelectFieldColor'] );
+                
+				//////$Keskus->alerti("Field creation failed for: ".$_POST['inputFieldName'], 3);
+				//////$Keskus->alerti("Field added: ".$_POST['inputFieldName'], 2);
 		} else {
 				$Keskus->alerti("Field (".$_POST['inputFieldName'].") already exists: ".$matching, 3);
 				}
@@ -71,7 +71,7 @@ if (isset($_POST[ $Keskus->_field_ADDED ])) {
 }
 if (isset($_POST[ $Keskus->_field_DELETE ])) {
 		
-		$removeFieldValue = $user->unsetFieldPersonal($_SESSION["memberID"], $_POST[ $Keskus->_field_DELETE ]);
+		$removeFieldValue = $user->unlinkField($_SESSION["memberID"], $_POST[ $Keskus->_field_DELETE ]);
 		
 		if ($removeFieldValue==0) {
 				$Keskus->alerti("Field removal failed for some reason.", 3);

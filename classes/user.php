@@ -113,12 +113,29 @@ class User extends Password{
   }
 	
 	// TOdo Funk mis kustutab/dislinkib fieldi kasutaja küljest hetkel... See ongi nüüd!
-	/* unSet ehk lõhu habiti ja kasutaja vaheline seos. Field ise jääb alles!
+	/* unSet ehk lõhu habiti ja kasutaja vaheline seos. Field ise jääb alles, koos originaalse autori ID'ga
 	 *
 	 * returns affected rows
 	 * Deal with errors after calling this!
 	 */
-	public function unsetFieldPersonal($member_ID, $field_ID){
+	public function linkField($member_ID, $field_ID){
+		try {
+			$stmt = $this->_db->prepare(
+                'INSERT into doti_user_fields (users_id, fields_id) VALUES (:uid, :fid)');
+            
+			$stmt->execute(array('uid' => $member_ID, 'fid' => $field_ID));
+			
+			$del = $stmt->rowCount();
+            
+            //echo "linkField test rowCount::" . $del;
+					
+			return ;
+		} catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+		}
+	}
+
+	public function unlinkField($member_ID, $field_ID){
 		try {
 			$stmt = $this->_db->prepare(
      'DELETE from doti_user_fields
@@ -139,10 +156,38 @@ class User extends Password{
 		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
 		}
 	}
-	
+
 	// @todo setFieldPersonal($member_ID, $field_ID)
 	// Kui link an unlinked or a new Field with this's
     
+    /* Fieldi loomine!
+     *
+     */
+    public function setFieldAdd($member_ID, $field_name, $field_color){
+        //$fn = $field_name;
+        $fn = iconv("UTF-8", "CP1252", $field_name);
+        $fc = $field_color;
+        
+        try {
+            $stmt = $this->_db->prepare("INSERT INTO doti_fields (name, color, author_users_id) VALUES (:fin, :fic, :aun);");
+            
+            $stmt->bindParam(':fin', $fn);
+            $stmt->bindParam(':fic', $fc);
+            $stmt->bindParam(':aun', $member_ID);
+            
+            $stmt->execute();
+            
+            $insertedID = $this->_db->lastInsertId();
+            
+            $this->linkField($member_ID, $insertedID);
+            
+            echo "New records created successfully. ID: " . $this->_db->lastInsertId();
+            
+        } catch(PDOException $e) {
+		    echo '<p class="bg-danger">'.$e->getMessage().'</p>';
+        }
+        
+    }
 	
   /* Küsib habiteid kasutaja Fieldi'i järgi...
    */
@@ -150,13 +195,10 @@ class User extends Password{
     try {
 			$stmt = $this->_db->prepare(
      'SELECT
-						doti_habits.name as HabitName,
-						doti_spec.name as SpecName
+						doti_habits.name as HabitName
 				FROM doti_habits
       LEFT JOIN doti_user_habits
         ON doti_habits.id = doti_user_habits.habits_id
-      LEFT JOIN doti_spec
-        ON doti_spec.id = doti_user_habits.habitspec_id
       WHERE user_fields_id = :mineId
       ORDER BY doti_user_habits.id ASC;');
 			$stmt->execute(array('mineId' => $field_ID));

@@ -19,17 +19,26 @@ foreach($fieldhabits as $fh) {
     echo '<div class="habit-title">';
       // Miski funktsioon, mis loob vastavaid linke, kustutamisel tuleb seda tegevust logida jne
       echo '<h4>';
-        echo '<span class="">'.utf8_encode($fh['HabitName']) . ' <sup>[' . utf8_encode($fh['SpecName']) .']</sup></span>';
+        echo '<span class="">'.utf8_encode($fh['HabitName']) . ' </span>';
       echo '</h4>';
     echo '</div>';
   echo '</div>';
 }
 
 if (count($fieldhabits)==0) {
-  echo 'No Goal habits here...<a href="' . $Keskus->getSubPageParams("memberpage.php",
+  echo '<div class="empty-habits">No Goal habits here...
+  
+  <a href="' . $Keskus->getSubPageParams("memberpage.php",
     array(
       $Keskus->_habit_ADD => 1))
-          . '" title="Add Field!">Add Habits</p>';
+          . '" title="Add Field!">Add Habits</p></a>
+          
+          </div>';
+} else {
+  echo '<a style="float: left; width: calc(100%-250px);" href="' . $Keskus->getSubPageParams("memberpage.php",
+    array(
+      $Keskus->_habit_ADD => 1))
+          . '" title="Add Field!">Add Habits</p></a>';
 }
 
 
