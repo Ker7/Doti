@@ -195,12 +195,15 @@ class User extends Password{
     try {
 			$stmt = $this->_db->prepare(
      'SELECT
-						doti_habits.name as HabitName
+						doti_habits.name as HabitName,
+						doti_spec.name as SpecName
 				FROM doti_habits
-      LEFT JOIN doti_user_habits
-        ON doti_habits.id = doti_user_habits.habits_id
+      LEFT JOIN doti_field_habits
+        ON doti_habits.id = doti_field_habits.habits_id
+      LEFT JOIN doti_spec
+        ON doti_spec.id = doti_field_habits.habitspec_id
       WHERE user_fields_id = :mineId
-      ORDER BY doti_user_habits.id ASC;');
+      ORDER BY doti_field_habits.id ASC;');
 			$stmt->execute(array('mineId' => $field_ID));
 
 //$Keskus->logi('getHabits($field_ID::'.$field_ID.')', 3);

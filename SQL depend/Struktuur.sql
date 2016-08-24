@@ -1,5 +1,5 @@
 
-DROP TABLE doti_user_habits;
+DROP TABLE doti_field_habits;
 DROP TABLE doti_user_fields;
 DROP TABLE doti_habits;
 DROP TABLE doti_spec;
@@ -70,13 +70,15 @@ CREATE TABLE IF NOT EXISTS `doti_habits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Erinevad tegevused/sündmused, mida kasutaja soovib trackida/tagida.';
 
-DROP TABLE IF EXISTS `doti_user_habits`;
-CREATE TABLE IF NOT EXISTS `doti_user_habits` (
+DROP TABLE IF EXISTS `doti_field_habits`;
+CREATE TABLE IF NOT EXISTS `doti_field_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
+  `habitspec_id` int(11) NOT NULL,
   KEY `user_fields_id` (`user_fields_id`),
-  KEY `habits_id` (`habits_id`)
+  KEY `habits_id` (`habits_id`),
+  KEY `habitspec_id` (`habitspec_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
