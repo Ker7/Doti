@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 	    $error[] = 'Please enter a valid email address';
 	} else {
-		$stmt = $db->prepare('SELECT email FROM doti_users WHERE email = :email');
+		$stmt = $db->prepare('SELECT email FROM dotbl_users WHERE email = :email');
 		$stmt->execute(array(':email' => $_POST['email']));
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
 
 		try {
 
-			$stmt = $db->prepare("UPDATE doti_users SET resetToken = :token, resetComplete='No' WHERE email = :email");
+			$stmt = $db->prepare("UPDATE dotbl_users SET resetToken = :token, resetComplete='No' WHERE email = :email");
 			$stmt->execute(array(
 				':email' => $row['email'],
 				':token' => $token

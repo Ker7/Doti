@@ -19,7 +19,7 @@ class User extends Password{
 	private function get_user_hash($username){
 
 		try {
-			$stmt = $this->_db->prepare('SELECT password, username, id AS memberID FROM doti_users WHERE username = :username AND active="Yes" ');
+			$stmt = $this->_db->prepare('SELECT password, username, id AS memberID FROM dotbl_users WHERE username = :username AND active="Yes" ');
 			$stmt->execute(array('username' => $username));
 
 			return $stmt->fetch();
@@ -44,7 +44,7 @@ class User extends Password{
   
   // ___________________________ MINU FUNKID _________________________________
   
-  /* Küsib kõik $member'iga SEOTUD fieldid User<->Field tabel: doti_user_fields
+  /* Küsib kõik $member'iga SEOTUD fieldid User<->Field tabel: dotbl_user_fields
 	 *
 	 * Mai-tea-miks on vajalik eraldi array'sse toppida, et ühekaupa utf8_encode ära teha...
 	 * print_r() keerab ka kohe selle pekki, kui pole enkooditud, must investigate
@@ -52,11 +52,11 @@ class User extends Password{
   public function getFieldsPersonal($member_ID){
     try {
 			$stmt = $this->_db->prepare(
-     'SELECT doti_fields.name AS FieldName,
-      doti_fields.id as FieldId
-      FROM doti_fields 
-      LEFT JOIN doti_user_fields
-        ON doti_fields.id = doti_user_fields.fields_id
+     'SELECT dotbl_fields.name AS FieldName,
+      dotbl_fields.id as FieldId
+      FROM dotbl_fields 
+      LEFT JOIN dotbl_user_fields
+        ON dotbl_fields.id = dotbl_user_fields.fields_id
       WHERE users_id = :myId
       ORDER BY FieldName DESC;');
 			$stmt->execute(array('myId' => $member_ID));
@@ -86,9 +86,9 @@ class User extends Password{
   public function getFieldsAuthor($member_ID){
     try {
 			$stmt = $this->_db->prepare(
-     'SELECT doti_fields.name AS FieldName,
-      doti_fields.id as FieldId
-      FROM doti_fields 
+     'SELECT dotbl_fields.name AS FieldName,
+      dotbl_fields.id as FieldId
+      FROM dotbl_fields 
       WHERE author_users_id = :myId
       ORDER BY FieldName DESC;');
 			$stmt->execute(array('myId' => $member_ID));
@@ -121,7 +121,7 @@ class User extends Password{
 	public function linkField($member_ID, $field_ID){
 		try {
 			$stmt = $this->_db->prepare(
-                'INSERT into doti_user_fields (users_id, fields_id) VALUES (:uid, :fid)');
+                'INSERT into dotbl_user_fields (users_id, fields_id) VALUES (:uid, :fid)');
             
 			$stmt->execute(array('uid' => $member_ID, 'fid' => $field_ID));
 			
@@ -138,7 +138,7 @@ class User extends Password{
 	public function unlinkField($member_ID, $field_ID){
 		try {
 			$stmt = $this->_db->prepare(
-     'DELETE from doti_user_fields
+     'DELETE from dotbl_user_fields
 		 WHERE
 				users_id = :myId
 		 AND
@@ -169,7 +169,7 @@ class User extends Password{
         $fc = $field_color;
         
         try {
-            $stmt = $this->_db->prepare("INSERT INTO doti_fields (name, color, author_users_id) VALUES (:fin, :fic, :aun);");
+            $stmt = $this->_db->prepare("INSERT INTO dotbl_fields (name, color, author_users_id) VALUES (:fin, :fic, :aun);");
             
             $stmt->bindParam(':fin', $fn);
             $stmt->bindParam(':fic', $fc);
@@ -195,15 +195,15 @@ class User extends Password{
     try {
 			$stmt = $this->_db->prepare(
      'SELECT
-						doti_habits.name as HabitName,
-						doti_spec.name as SpecName
-				FROM doti_habits
-      LEFT JOIN doti_field_habits
-        ON doti_habits.id = doti_field_habits.habits_id
-      LEFT JOIN doti_spec
-        ON doti_spec.id = doti_field_habits.habitspec_id
+						dotbl_habits.name as HabitName,
+						dotbl_spec.name as SpecName
+				FROM dotbl_habits
+      LEFT JOIN dotbl_field_habits
+        ON dotbl_habits.id = dotbl_field_habits.habits_id
+      LEFT JOIN dotbl_spec
+        ON dotbl_spec.id = dotbl_field_habits.habitspec_id
       WHERE user_fields_id = :mineId
-      ORDER BY doti_field_habits.id ASC;');
+      ORDER BY dotbl_field_habits.id ASC;');
 			$stmt->execute(array('mineId' => $field_ID));
 
 //$Keskus->logi('getHabits($field_ID::'.$field_ID.')', 3);

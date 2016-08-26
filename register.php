@@ -10,7 +10,7 @@ if(isset($_POST['submit'])){
 	if(strlen($_POST['username']) < 3){
 		$error[] = 'Username is too short.';//@todo Translate
 	} else {
-		$stmt = $db->prepare('SELECT username FROM doti_users WHERE username = :username');
+		$stmt = $db->prepare('SELECT username FROM dotbl_users WHERE username = :username');
 		$stmt->execute(array(':username' => $_POST['username']));
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -36,7 +36,7 @@ if(isset($_POST['submit'])){
 	if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 	    $error[] = 'Please enter a valid email address';//@todo Translate
 	} else {
-		$stmt = $db->prepare('SELECT email FROM doti_users WHERE email = :email');
+		$stmt = $db->prepare('SELECT email FROM dotbl_users WHERE email = :email');
 		$stmt->execute(array(':email' => $_POST['email']));
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
 		try {
 
 			//insert into database with a prepared statement
-			$stmt = $db->prepare('INSERT INTO doti_users (username,password,email,active) VALUES (:username, :password, :email, :active)');
+			$stmt = $db->prepare('INSERT INTO dotbl_users (username,password,email,active) VALUES (:username, :password, :email, :active)');
 			$stmt->execute(array(
 				':username' => $_POST['username'],
 				':password' => $hashedpassword,

@@ -1,19 +1,19 @@
 
-DROP TABLE doti_field_habits;
-DROP TABLE doti_user_fields;
-DROP TABLE doti_habits;
-DROP TABLE doti_spec;
-DROP TABLE doti_field_datalog;
-DROP TABLE doti_habit_datalog;
-DROP TABLE doti_fields;
-DROP TABLE doti_users;
+DROP TABLE IF EXISTS dotbl_field_habits;
+DROP TABLE IF EXISTS dotbl_user_fields;
+DROP TABLE IF EXISTS dotbl_habits;
+DROP TABLE IF EXISTS dotbl_spec;
+DROP TABLE IF EXISTS dotbl_field_datalog;
+DROP TABLE IF EXISTS dotbl_habit_datalog;
+DROP TABLE IF EXISTS dotbl_fields;
+DROP TABLE IF EXISTS dotbl_users;
 
 -- =============================================================================================
 -- TABELI STRUKTUUR ============================================================================
 -- =============================================================================================
 
-DROP TABLE IF EXISTS `doti_fields`;
-CREATE TABLE IF NOT EXISTS `doti_fields` (
+DROP TABLE IF EXISTS `dotbl_fields`;
+CREATE TABLE IF NOT EXISTS `dotbl_fields` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text NOT NULL,
   `color` varchar(7) NOT NULL DEFAULT '#FFFFFF',
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `doti_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kõik võimalikud kasutaja poolt kirja pandud hobid, valdkonnad või alad, mille üle soovitakse järge/arvestust pidada.';
 
-DROP TABLE IF EXISTS `doti_users`;
-CREATE TABLE IF NOT EXISTS `doti_users` (
+DROP TABLE IF EXISTS `dotbl_users`;
+CREATE TABLE IF NOT EXISTS `dotbl_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `doti_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Doti kasutajad, users table';
 
-DROP TABLE IF EXISTS `doti_user_fields`;
-CREATE TABLE IF NOT EXISTS `doti_user_fields` (
+DROP TABLE IF EXISTS `dotbl_user_fields`;
+CREATE TABLE IF NOT EXISTS `dotbl_user_fields` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `users_id` int(11) NOT NULL,
   `fields_id` int(11) NOT NULL,
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `doti_user_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud fieldid';
 
-DROP TABLE IF EXISTS `doti_field_datalog`;
-CREATE TABLE IF NOT EXISTS `doti_field_datalog` (
+DROP TABLE IF EXISTS `dotbl_field_datalog`;
+CREATE TABLE IF NOT EXISTS `dotbl_field_datalog` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_field_id` int(11) NOT NULL,
   `value` int(11) NOT NULL,
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `doti_field_datalog` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci
 COMMENT='Fieldide väärtuste ajalugu ja kommentaarid';
 
-DROP TABLE IF EXISTS `doti_habits`;
-CREATE TABLE IF NOT EXISTS `doti_habits` (
+DROP TABLE IF EXISTS `dotbl_habits`;
+CREATE TABLE IF NOT EXISTS `dotbl_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `habitauthor_users_id` int(11) NOT NULL,
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `doti_habits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Erinevad tegevused/sündmused, mida kasutaja soovib trackida/tagida.';
 
-DROP TABLE IF EXISTS `doti_field_habits`;
-CREATE TABLE IF NOT EXISTS `doti_field_habits` (
+DROP TABLE IF EXISTS `dotbl_field_habits`;
+CREATE TABLE IF NOT EXISTS `dotbl_field_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
@@ -82,19 +82,19 @@ CREATE TABLE IF NOT EXISTS `doti_field_habits` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
-DROP TABLE IF EXISTS `doti_habit_datalog`;
-CREATE TABLE IF NOT EXISTS `doti_habit_datalog` (
+DROP TABLE IF EXISTS `dotbl_habit_datalog`;
+CREATE TABLE IF NOT EXISTS `dotbl_habit_datalog` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `user_fields_habits_id` int(11) NOT NULL,
+  `field_habit_id` int(11) NOT NULL,
   `event_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `unit` text CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `value` decimal(10,2) NOT NULL,
-  KEY `user_fields_habits_id` (`user_fields_habits_id`)
+  KEY `field_habit_id` (`field_habit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci
 COMMENT='Fieldide väärtuste ajalugu ja kommentaarid';
 
-DROP TABLE IF EXISTS `doti_spec`;
-CREATE TABLE IF NOT EXISTS `doti_spec` (
+DROP TABLE IF EXISTS `dotbl_spec`;
+CREATE TABLE IF NOT EXISTS `dotbl_spec` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` text CHARACTER SET utf8 COLLATE utf8_estonian_ci NOT NULL,
   `habitspec_author_users_id` int(11) NOT NULL,
