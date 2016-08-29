@@ -118,7 +118,7 @@ class User extends Password{
 	 * returns affected rows
 	 * Deal with errors after calling this!
 	 */
-	private function linkField($member_ID, $field_ID){
+	public function linkField($member_ID, $field_ID){
 		try {
 			$stmt = $this->_db->prepare(
                 'INSERT into dotbl_user_fields (users_id, fields_id) VALUES (:uid, :fid)');
