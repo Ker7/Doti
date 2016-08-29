@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `dotbl_users` (
   
   `privilegeLevel` int(11) DEFAULT NULL,
   `created_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `edited_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `edited_timestamp` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Doti kasutajad, users table';
@@ -75,10 +75,8 @@ CREATE TABLE IF NOT EXISTS `dotbl_field_habits` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `user_fields_id` int(11) NOT NULL,
   `habits_id` int(11) NOT NULL,
-  `habitspec_id` int(11) NOT NULL,
   KEY `user_fields_id` (`user_fields_id`),
-  KEY `habits_id` (`habits_id`),
-  KEY `habitspec_id` (`habitspec_id`)
+  KEY `habits_id` (`habits_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci 
 COMMENT='Kasutajaga seotud (Tema Sektoriga) Tegevused';
 
