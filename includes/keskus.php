@@ -114,6 +114,7 @@ class Keskus {
       return ;
     }
   }
+  
   /* Echo messages straight out!
    * 1 - success green
    * 2 - info blue
@@ -140,7 +141,6 @@ class Keskus {
           </div>';
     
   }
- 
  
   // . . .
 
